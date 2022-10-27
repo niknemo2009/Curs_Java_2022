@@ -29,7 +29,7 @@ public class Exercise_7 {
     }
 
     public static void main(String[] args) {
-        Exercise_7 example = new Exercise_7(3);
+        Exercise_7 example = new Exercise_7(5);
         example.viewMenu();
 
     }
@@ -43,7 +43,7 @@ public class Exercise_7 {
             System.out.println("[3] Quit");
             String choice = scan.next();
             if (choice.equals("1")) {
-                   userInPut();
+                userInPut();
 
             } else if (choice.equals("2")) {
                 if (list.size() == 0) {
@@ -68,16 +68,16 @@ public class Exercise_7 {
         list.clear();
         for (int i = 0; i < counter; i++) {
             System.out.println(Integer.valueOf(i + 1) + ". Please enter a number - ");
-            String temp=scan.next();
-            if(temp.matches("[0-9]+")) {
-                int number=Integer.valueOf(temp);
+            String temp = scan.next();
+            if (temp.matches("[0-9]+")) {
+                int number = Integer.valueOf(temp);
                 list.add(number);
-            }else{
+            } else {
                 System.out.println("Mistake in format  input. Please, use number ! ");
                 i--;
                 continue;
 
-          }
+            }
 
         }
     }
