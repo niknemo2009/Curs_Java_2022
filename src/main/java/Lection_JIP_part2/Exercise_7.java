@@ -16,55 +16,77 @@ menu after their action has taken place. Erroneous user inputs (e.g. text instea
 of an integer) should be checked by the program and require new input from the
 user.
  */
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Work is not COMPLETE :)
+
 public class Exercise_7 {
-  private  int counter;
-   private List<Integer> list=new Vector<>();
-   private Scanner scan=new Scanner(System.in);
+    private int counter;
+    private List<Integer> list = new Vector<>();
+    private Scanner scan = new Scanner(System.in);
 
     public Exercise_7(int counter) {
         this.counter = counter;
     }
 
     public static void main(String[] args) {
-       Exercise_7 example=new Exercise_7(5);
-       example.viewMenu();
+        Exercise_7 example = new Exercise_7(3);
+        example.viewMenu();
 
     }
-    void viewMenu(){
-        boolean flag=true;
-        while(flag){
-        System.out.println("1. Input data");
-        System.out.println("2. Calculate");
-        System.out.println("3. Quit");
-        int choice=scan.nextInt();
-            if(choice==1){
-                userInPut();
 
-            }else if(choice==2){
-               calculateSumSquare();
-            }else if(choice==3){
+    void viewMenu() {
+        boolean flag = true;
+        while (flag) {
+            System.out.println("--------- MENU -------------");
+            System.out.println("[1] Input numbers");
+            System.out.println("[2] Calculate sum of squares");
+            System.out.println("[3] Quit");
+            String choice = scan.next();
+            if (choice.equals("1")) {
+                   userInPut();
+
+            } else if (choice.equals("2")) {
+                if (list.size() == 0) {
+                    System.out.println("Please input a number !");
+                    continue;
+                }
+                int result = calculateSumSquare();
+                System.out.println("For " + list.toString() + " result = " + result);
+
+            } else if (choice.equals("3")) {
                 System.out.println("By !");
-               flag=false;
-            }else{
-                System.out.println("Error");
-                continue;
+                scan.close();
+                flag = false;
+            } else {
+                System.out.println("Error of choice item menu !");
+
             }
         }
     }
 
     private void userInPut() {
-        for(int i=0;i<counter;i++){
-            System.out.println(Integer.valueOf(i+1)+". Please enter a number - ");
-            list.add(scan.nextInt());
+        list.clear();
+        for (int i = 0; i < counter; i++) {
+            System.out.println(Integer.valueOf(i + 1) + ". Please enter a number - ");
+            String temp=scan.next();
+            if(temp.matches("[0-9]+")) {
+                int number=Integer.valueOf(temp);
+                list.add(number);
+            }else{
+                System.out.println("Mistake in format  input. Please, use number ! ");
+                i--;
+                continue;
+
+          }
+
         }
     }
 
-    private  int calculateSumSquare(){
-        int result=0;
-        for (int temp:list) {
-        result+=temp*temp;
+    private int calculateSumSquare() {
+        int result = 0;
+        for (int temp : list) {
+            result += temp * temp;
         }
-
         return result;
     }
 }
