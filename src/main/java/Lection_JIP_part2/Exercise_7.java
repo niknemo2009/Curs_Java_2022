@@ -17,26 +17,54 @@ of an integer) should be checked by the program and require new input from the
 user.
  */
 public class Exercise_7 {
-   int counter;
-    List<Integer> list=new Vector<>();
-    public static void main(String[] args) {
-        int sum;
-        int number=0;
-        Scanner scan=new Scanner(System.in);
-        for(int i=0;i<count;i++){
-            System.out.println("Введіть будь ласка число - ");
-            list.add(scan.nextInt());
+  private  int counter;
+   private List<Integer> list=new Vector<>();
+   private Scanner scan=new Scanner(System.in);
 
-        }
-        System.out.println("Sum all number ="+ sum);
-
+    public Exercise_7(int counter) {
+        this.counter = counter;
     }
 
-    int calculateSum(){
-        int result=0;
-        for (:
-             ) {
+    public static void main(String[] args) {
+       Exercise_7 example=new Exercise_7(5);
+       example.viewMenu();
 
+    }
+    void viewMenu(){
+        boolean flag=true;
+        while(flag){
+        System.out.println("1. Input data");
+        System.out.println("2. Calculate");
+        System.out.println("3. Quit");
+        int choice=scan.nextInt();
+            if(choice==1){
+                userInPut();
+
+            }else if(choice==2){
+               calculateSumSquare();
+            }else if(choice==3){
+                System.out.println("By !");
+               flag=false;
+            }else{
+                System.out.println("Error");
+                continue;
+            }
         }
+    }
+
+    private void userInPut() {
+        for(int i=0;i<counter;i++){
+            System.out.println(Integer.valueOf(i+1)+". Please enter a number - ");
+            list.add(scan.nextInt());
+        }
+    }
+
+    private  int calculateSumSquare(){
+        int result=0;
+        for (int temp:list) {
+        result+=temp*temp;
+        }
+
+        return result;
     }
 }
