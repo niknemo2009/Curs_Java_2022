@@ -1,8 +1,7 @@
 package Lection_JIP_part2;
 
-import java.util.List;
 import java.util.Scanner;
-import java.util.Vector;
+
 
 /*
 Write a program asking the user for five integers (Don't use arrays!). The program
@@ -17,19 +16,20 @@ of an integer) should be checked by the program and require new input from the
 user.
  */
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  COMPLETE :)
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! COMPLETE :)
+// WITHOUT ARRAY
 
-public class Exercise_7 {
+public class Exercise_7_variant2 {
     private int counter;
-    private List<Integer> list = new Vector<>();
+    private StringBuilder data = new StringBuilder("");
     private Scanner scan = new Scanner(System.in);
 
-    public Exercise_7(int counter) {
+    public Exercise_7_variant2(int counter) {
         this.counter = counter;
     }
 
     public static void main(String[] args) {
-        Exercise_7 example = new Exercise_7(5);
+        Exercise_7_variant2 example = new Exercise_7_variant2(5);
         example.viewMenu();
 
     }
@@ -46,12 +46,12 @@ public class Exercise_7 {
                 userInPut();
 
             } else if (choice.equals("2")) {
-                if (list.size() == 0) {
+                if (data.length() == 0) {
                     System.out.println("Please input the numbers !");
                     continue;
                 }
                 int result = calculateSumSquare();
-                System.out.println("For " + list.toString() + " result = " + result);
+                System.out.println("For " + data.toString() + " result = " + result);
 
             } else if (choice.equals("3")) {
                 System.out.println("By !");
@@ -65,13 +65,15 @@ public class Exercise_7 {
     }
 
     private void userInPut() {
-        list.clear();
+        if (data.length() != 0) {
+            data.delete(0, data.length() - 1);
+        }
+        ;
         for (int i = 0; i < counter; i++) {
             System.out.println(Integer.valueOf(i + 1) + ". Please enter a number - ");
             String temp = scan.next();
             if (temp.matches("[0-9]+")) {
-                int number = Integer.valueOf(temp);
-                list.add(number);
+                data.append(temp + ";");
             } else {
                 System.out.println("Mistake in format  input. Please, use number ! ");
                 i--;
@@ -84,8 +86,10 @@ public class Exercise_7 {
 
     private int calculateSumSquare() {
         int result = 0;
-        for (int temp : list) {
-            result += temp * temp;
+        String[] total = data.toString().split(";");
+        for (String temp : total) {
+            int num = Integer.parseInt(temp);
+            result += num * num;
         }
         return result;
     }
