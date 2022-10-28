@@ -76,7 +76,7 @@ public class Exercise1 {
         }
         return result;
     }
-
+//
     static int[] metodA_2(int[] array) {
         String[] tempArray = new String[array.length];
         int currentPosition = 0;
