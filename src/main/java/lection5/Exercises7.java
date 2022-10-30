@@ -4,7 +4,7 @@ package lection5;
 anagram is a text made by exchanging the letters of another text. For example,
 "parliament" is an anagram of "partial men".
  */
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!! NO COMPLETE
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!! COMPLETE
 import java.util.Arrays;
 
 public class Exercises7 {
@@ -32,7 +32,7 @@ public class Exercises7 {
  return  result;
     }
 
-    private static String killSpace(String str) {
+    public static String killSpace(String str) {
         String[] arr1= str.trim().split("[ ]+");
         StringBuilder sb1=new StringBuilder();
         for (String temp:arr1) {
