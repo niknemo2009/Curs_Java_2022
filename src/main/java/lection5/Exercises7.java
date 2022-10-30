@@ -16,18 +16,8 @@ public class Exercises7 {
 
    static boolean isAnagramm(String str1, String str2) {
  boolean result=true;
- String[] arr1=str1.trim().split("[ ]+");
- String[] arr2=str2.trim().split("[ ]+");
- StringBuilder sb1=new StringBuilder();
-        for (String temp:arr1) {
-            sb1.append(temp);
-        }
-        StringBuilder sb2=new StringBuilder();
-        for (String temp:arr2) {
-            sb2.append(temp);
-        }
-       char[] chars1=sb1.toString().toLowerCase().toCharArray();
-       char[] chars2=sb2.toString().toLowerCase().toCharArray();
+       char[] chars1=killSpace(str1).toCharArray();
+       char[] chars2=killSpace(str2).toCharArray();
         Arrays.sort(chars1);
         Arrays.sort(chars2);
         if(chars1.length!=chars2.length){
@@ -40,5 +30,14 @@ public class Exercises7 {
             }
         }
  return  result;
+    }
+
+    private static String killSpace(String str) {
+        String[] arr1= str.trim().split("[ ]+");
+        StringBuilder sb1=new StringBuilder();
+        for (String temp:arr1) {
+            sb1.append(temp);
+        }
+        return sb1.toString().toLowerCase();
     }
 }
