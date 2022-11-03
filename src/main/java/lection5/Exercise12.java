@@ -19,18 +19,18 @@ public class Exercise12 {
         analiseText("qwerrt");
     }
 
-   static  Map<String,Integer> analiseText(String path33){
-        Map<String,Integer> result=new TreeMap<>();
-        Path path = Paths.get(System.getProperty("user.dir")+"/1.txt");
+    static Map<String, Integer> analiseText(String path33) {
+        Map<String, Integer> result = new TreeMap<>();
+        Path path = Paths.get(System.getProperty("user.dir") + "/1.txt");
         try (Stream<String> lines = Files.lines(path)) {
-            lines.forEach(x->{
-                String[] words=x.replaceAll("[a-zA-Z0-9]*[\\.\\-:;=,]([a-zA-Z0-9]*)"," ").split(" ");
-                for (String temp:words ) {
-                    if(result.containsKey(temp)){
-                        int count=result.get(temp);
-                        result.put(temp,count+1);
-                    }else{
-                        result.put(temp,1);
+            lines.forEach(x -> {
+                String[] words = x.replaceAll("[a-zA-Z0-9]*[\\.\\-:;=,]([a-zA-Z0-9]*)", " ").split(" ");
+                for (String temp : words) {
+                    if (result.containsKey(temp)) {
+                        int count = result.get(temp);
+                        result.put(temp, count + 1);
+                    } else {
+                        result.put(temp, 1);
                     }
                 }
 

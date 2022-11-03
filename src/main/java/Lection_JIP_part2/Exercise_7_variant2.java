@@ -20,9 +20,9 @@ user.
 // WITHOUT ARRAY
 
 public class Exercise_7_variant2 {
-    private int counter;
-    private StringBuilder data = new StringBuilder("");
-    private Scanner scan = new Scanner(System.in);
+    private final int counter;
+    private final StringBuilder data = new StringBuilder();
+    private final Scanner scan = new Scanner(System.in);
 
     public Exercise_7_variant2(int counter) {
         this.counter = counter;
@@ -68,7 +68,6 @@ public class Exercise_7_variant2 {
         if (data.length() != 0) {
             data.delete(0, data.length() - 1);
         }
-        ;
         for (int i = 0; i < counter; i++) {
             System.out.println(Integer.valueOf(i + 1) + ". Please enter a number - ");
             String temp = scan.next();

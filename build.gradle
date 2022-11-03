@@ -13,8 +13,29 @@ dependencies {
 
     testImplementation(platform('org.junit:junit-bom:5.9.1'))
     testImplementation('org.junit.jupiter:junit-jupiter')
+
+    /*
+    junit-platform-suite-commons in test scope
+
+junit-platform-launcher in test scope
+
+junit-platform-engine in test scope
+
+junit-platform-commons in test scope
+
+opentest4j in test scope
+     */
 }
 
 test {
     useJUnitPlatform()
+//    dependencies {
+//        testImplementation('junit-platform-suite-api')
+//        testImplementation('junit-platform-suite-commons')
+//        testImplementation('junit-platform-launcher')
+//        testImplementation('junit-platform-engine')
+//        testImplementation('opentest4j')
+//        testRuntimeOnly('junit-platform-suite-engine')
+//
+//    }
 }

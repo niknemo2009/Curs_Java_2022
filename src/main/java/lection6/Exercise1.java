@@ -10,8 +10,8 @@ Where are pros and cons
  */
 
 // !!!!!!!!!!!!!!!!!!!!!!!! COMPLETE
+
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Exercise1 {
 
@@ -77,7 +77,8 @@ public class Exercise1 {
         }
         return result;
     }
-//
+
+    //
     static int[] metodA_2(int[] array) {
         String[] tempArray = new String[array.length];
         int currentPosition = 0;

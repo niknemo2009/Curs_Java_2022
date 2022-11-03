@@ -1,10 +1,9 @@
 package lection5;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 /*
@@ -15,38 +14,115 @@ clear the console in Java, please see ....
  */
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!! No COMPLETE
 public class Exercise11 {
-    List<String> data=new ArrayList<>();
-    List<String> nameUsers=new ArrayList<>();
-    Scanner scan=new Scanner(System.in);
+    List<String> data = new ArrayList<>();
+    List<String> nameUsers = new ArrayList<>();
+    private final int countPlayers;
+    String currentPlayerName;
+    Scanner scan = new Scanner(System.in);
+
+    public Exercise11(int countPlayers) {
+        this.countPlayers = countPlayers;
+    }
 
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner scan = new Scanner(new File("/home/yurii/IdeaProjects/Curs_Java_2022/src/main/resources/1.txt"));
-        System.out.println("sdsdsds ");
-        int var1 = scan.nextInt();
+        Exercise11 exercise11 = new Exercise11(2);
+        exercise11.viewMenu();
 
     }
-void viewMenu(){
-        boolean flag=true;
-    System.out.println("1. Start game.");
-    System.out.println("2. Quit.");
 
-        while (flag){
-            switch ()
+    void viewMenu() {
+        boolean flag = true;
+        while (flag) {
+            System.out.println("+++ Game menu  +++ List players - " + nameUsers);
+            System.out.println("1. Start game.");
+            System.out.println("2. Add players.");
+            System.out.println("3. Quit.");
+            String choice = scan.next();
+            switch (choice) {
+                case "1": {
+                    play();
+                    break;
+                }
+                case "2": {
+                    addPlayers();
+                    break;
+                }
+                case "3": {
+                    flag = false;
+                    System.out.println("By !");
+                    return;
+
+                }
+
+                default: {
+                    System.out.println(" Mistake choice  item menu !");
+
+                }
+            }
 
         }
 
-}
-void nextStep(){
-  String nextStr=scan.nextLine();
-   if(data.size()>0){
-       String[] previousString=data.get(data.size()-1).split(" ");
-       String[] lastString=nextStr.split(" ");
-       if(previousString.length!=lastString.length)
-       Arrays.sort(previousString);
-       Arrays.sort(lastString);
 
-   }
-}
+    }
+
+
+    void addPlayers() {
+        nameUsers.clear();
+        System.out.println("Menu for adding players !!!!! ");
+        for (int i = 0; i < countPlayers; i++) {
+            System.out.println("List players -" + nameUsers);
+            System.out.println("Nickname " + (i + 1) + "  player is -  ");
+            String name = scan.next();
+            if (nameUsers.contains(name) == true) {
+                System.out.println("Please, change nickname ! Nickname used already.");
+                i--;
+            } else {
+                nameUsers.add(name);
+            }
+        }
+
+
+    }
+
+    void play() {
+        boolean flag = true;
+        while (flag) {
+            System.out.println(currentPlayerName + " , please enter phrase - ");
+            String variant = scan.next();
+            if (this.data.size() == 0) {
+                data.add(variant.trim());
+                this.currentPlayerName = nextPlayer();
+            } else {
+                if (variant.trim().indexOf(data.get(0)) == 0) {
+                    data.add(variant.trim());
+                    this.currentPlayerName = nextPlayer();
+                } else {
+                    System.out.println("Sorry " + this.currentPlayerName + " game over for you !");
+                    this.currentPlayerName = nextPlayer();
+                    nameUsers.remove(this.currentPlayerName);
+                }
+            }
+
+        }
+
+
+    }
+
+
+    private String nextPlayer() {
+        Random rnd = new Random();
+        String result = "";
+        if (currentPlayerName == null) {
+            result = nameUsers.get(rnd.nextInt(nameUsers.size() - 1));
+        } else {
+            int positionOld = nameUsers.indexOf(this.currentPlayerName);
+            int temp = positionOld == (nameUsers.size() - 1) ? 0 : positionOld++;
+            result = nameUsers.get(temp);
+        }
+        return result;
+
+    }
+
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();

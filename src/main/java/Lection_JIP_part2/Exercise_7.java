@@ -20,9 +20,9 @@ user.
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  COMPLETE :)
 
 public class Exercise_7 {
-    private int counter;
-    private List<Integer> list = new Vector<>();
-    private Scanner scan = new Scanner(System.in);
+    private final int counter;
+    private final List<Integer> list = new Vector<>();
+    private final Scanner scan = new Scanner(System.in);
 
     public Exercise_7(int counter) {
         this.counter = counter;
@@ -51,7 +51,7 @@ public class Exercise_7 {
                     continue;
                 }
                 int result = calculateSumSquare();
-                System.out.println("For " + list.toString() + " result = " + result);
+                System.out.println("For " + list + " result = " + result);
 
             } else if (choice.equals("3")) {
                 System.out.println("By !");
