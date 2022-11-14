@@ -1,6 +1,8 @@
 package lection5;
 
+import java.io.Console;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -25,10 +27,39 @@ public class Exercise11 {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        Exercise11 exercise11 = new Exercise11(2);
-        exercise11.viewMenu();
+//        Exercise11 exercise11 = new Exercise11(3);
+//        exercise11.viewMenu();
+//Scanner scan=new Scanner( System.in);
+//String val=scan.nextLine();
+//        System.out.println(val);
+     //   clearScreen();
+        Scanner conin = new Scanner(System.in);
 
+        int count = 0;
+        double sum = 0.0;
+
+        System.out.println("Enter numbers to average.");
+
+        while (conin.hasNext()) {
+            if (conin.hasNextDouble()) {
+                sum += conin.nextDouble();
+                count++;
+            } else {
+                String str = conin.next();
+                if (str.equals("done"))
+                    break;
+                else {
+                    System.out.println("Data format error.");
+                    return;
+                }
+            }
+        }
+
+        System.out.println("Average is " + sum / count);
     }
+
+
+
 
     void viewMenu() {
         boolean flag = true;
@@ -80,29 +111,41 @@ public class Exercise11 {
                 nameUsers.add(name);
             }
         }
-
+currentPlayerName=nextPlayer();
 
     }
 
     void play() {
+        if(nameUsers.size()==0){
+            System.out.println("Please, add players !");
+            return;
+        }
+        Scanner scan=new Scanner(System.in);
         boolean flag = true;
         while (flag) {
+
+            if(nameUsers.size()==1){
+                System.out.println("Congratulation ! "+currentPlayerName +" are winner !" );
+               break;
+
+            }
             System.out.println(currentPlayerName + " , please enter phrase - ");
-            String variant = scan.next();
+
+            String variant = scan.nextLine();
+
             if (this.data.size() == 0) {
                 data.add(variant.trim());
-                this.currentPlayerName = nextPlayer();
+
             } else {
                 if (variant.trim().indexOf(data.get(0)) == 0) {
                     data.add(variant.trim());
-                    this.currentPlayerName = nextPlayer();
+
                 } else {
                     System.out.println("Sorry " + this.currentPlayerName + " game over for you !");
-                    this.currentPlayerName = nextPlayer();
                     nameUsers.remove(this.currentPlayerName);
                 }
             }
-
+            this.currentPlayerName = nextPlayer();
         }
 
 
@@ -116,7 +159,7 @@ public class Exercise11 {
             result = nameUsers.get(rnd.nextInt(nameUsers.size() - 1));
         } else {
             int positionOld = nameUsers.indexOf(this.currentPlayerName);
-            int temp = positionOld == (nameUsers.size() - 1) ? 0 : positionOld++;
+            int temp = positionOld == (nameUsers.size() - 1) ? 0 : ++positionOld;
             result = nameUsers.get(temp);
         }
         return result;
@@ -127,4 +170,16 @@ public class Exercise11 {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
+    public static void clear()
+    {
+        try
+        {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ex) {}
+    }
+
 }
