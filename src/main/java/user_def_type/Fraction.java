@@ -26,12 +26,15 @@ public class Fraction {
         Fraction frac1= null;
         try {
             frac1 = new Fraction(12,72);
+            System.out.println(revert(frac1));
             Fraction frac2 = new Fraction(6, 72);
             Fraction    frac3 = new Fraction(6,72);
             Fraction    frac4 = new Fraction(6,8);
             Fraction    frac5 = new Fraction(6,13);
             System.out.println(sum(frac3,frac1,frac2));
             subtract(frac4,frac5);
+            System.out.println("#####################");
+            System.out.println(divide(frac4,frac5));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,7 +92,7 @@ public class Fraction {
         System.out.println(result);
         return result;
     }
-    Fraction multiply(Fraction ... fractions){
+   static Fraction multiply(Fraction ... fractions){
         Fraction result=null;
  int resultNumerator=1;
  int resultDenominator=1;
@@ -105,12 +108,12 @@ public class Fraction {
         return result;
     }
 
-    Fraction divide(Fraction frac1,Fraction frac2){
+   static  Fraction divide(Fraction frac1,Fraction frac2){
 
         return multiply(frac1,revert(frac2));
     }
 
-    private Fraction revert(Fraction frac2) {
+    private static Fraction revert(Fraction frac2) {
         Fraction result=null;
         try {
             result=new Fraction(frac2.denominator, frac2.numerator);
@@ -133,6 +136,7 @@ public class Fraction {
 
      void simplifying(){
         int num=Math.abs(this.numerator);
+
         int[] counter={2};
         while(counter[0]>1&& num!=1){
             counter[0]=0;
