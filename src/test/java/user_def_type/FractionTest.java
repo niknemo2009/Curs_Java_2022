@@ -30,8 +30,8 @@ class FractionTest {
 
     @ParameterizedTest
     @MethodSource("sumProvider")
-    void checkSum(Fraction[] data, Fraction result) {
-        assertEquals(Fraction.sum(data),result);
+    void checkSum(Fraction[] data, Fraction expectedResult) {
+        assertEquals(Fraction.sum(data),expectedResult);
     }
     static Stream<Arguments> sumProvider() throws Exception {
         return Stream.of(
@@ -44,10 +44,25 @@ class FractionTest {
 
         );
     }
-    @Test
-    void subtract() {
-    }
+    @ParameterizedTest
+    @MethodSource("substractProvider")
+    void checkSubtract(Fraction frac1,Fraction frac2, Fraction expectedResult ) {
+        assertEquals(Fraction.subtract(frac1,frac2),expectedResult);
 
+    }
+    static Stream<Arguments> substractProvider() throws Exception {
+        return Stream.of(
+                Arguments.of(new Fraction(2,5),new Fraction(4,10),new Fraction(0,50)),
+                Arguments.of(new Fraction(2,5),new Fraction(1,10),new Fraction(3,5)),
+                Arguments.of(new Fraction(2,5),new Fraction(1,5),new Fraction(1,5)),
+                Arguments.of(new Fraction(2,5),new Fraction(3,5),new Fraction(-1,5)),
+                Arguments.of(new Fraction(22,1),new Fraction(4,2),new Fraction(20,1)),
+                Arguments.of(new Fraction(20,5),new Fraction(40,10),new Fraction(0,10)),
+                Arguments.of(new Fraction(20,5),new Fraction(40,10),new Fraction(0,77)),
+                Arguments.of(new Fraction(2,11),new Fraction(4,9),new Fraction(-26,99))
+
+        );
+    }
     @Test
     void multiply() {
     }
