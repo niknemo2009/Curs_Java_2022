@@ -12,79 +12,89 @@ d) Mind to create unit tests
  */
 // !!!!!!!!!!!!!!!!!!!!!!!!!! NOT COMPLETE
 public class Fraction {
-   private int numerator;
+    private int numerator;
     private int denominator;
 
     public Fraction(int numerator, int denominator) throws Exception {
         this.numerator = numerator;
-       setDenominator(denominator);
+        setDenominator(denominator);
         simplifying();
     }
 
     public static void main(String[] args) {
-     //   IntStream.range(2000,100).forEach(System.out::println);
-        Fraction frac1= null;
+        //   IntStream.range(2000,100).forEach(System.out::println);
+        Fraction frac1 = null;
         try {
-            frac1 = new Fraction(12,72);
-            System.out.println(revert(frac1));
-            Fraction frac2 = new Fraction(6, 72);
-            Fraction    frac3 = new Fraction(6,72);
-            Fraction    frac4 = new Fraction(6,8);
-            Fraction    frac5 = new Fraction(6,13);
-            System.out.println(sum(frac3,frac1,frac2));
-            subtract(frac4,frac5);
-            System.out.println("#####################");
-            System.out.println(divide(frac4,frac5));
+            frac1 = new Fraction(-2, -4);
+            //          System.out.println(revert(frac1));
+//            Fraction frac2 = new Fraction(6, 72);
+//            Fraction    frac3 = new Fraction(6,72);
+//            Fraction    frac4 = new Fraction(6,8);
+//            Fraction    frac5 = new Fraction(6,13);
+//            System.out.println(sum(frac3,frac1,frac2));
+//            subtract(frac4,frac5);
+//            System.out.println("#####################");
+//            System.out.println(divide(frac4,frac5));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        frac1.simplifying();
+        //  frac1.simplifying();
         System.out.println(frac1);
     }
+
     public int getNumerator() {
         return numerator;
     }
 
     public void setNumerator(int numerator) {
         this.numerator = numerator;
+        simplifying();
     }
 
     public int getDenominator() {
         return denominator;
     }
 
-    public void setDenominator(int denominator) throws Exception {
-        if(denominator==0){
+    public void setDenominator(int newDenominator) throws Exception {
+        if (newDenominator == 0) {
             throw new Exception();
         }
-        this.denominator = denominator;
+        if(this.numerator*newDenominator>=0){
+
+            this.numerator=Math.abs(numerator);
+        }else{
+            this.numerator=this.numerator*(-1);
+        }
+        this.denominator = Math.abs(newDenominator);
+        simplifying();
     }
 
-   static Fraction sum(Fraction ... fractions){
-        Fraction result=null;
-        int accum=1;
-        for (Fraction temp:fractions ) {
-            accum*=temp.denominator;
+    static Fraction sum(Fraction... fractions) {
+        Fraction result = null;
+        int accum = 1;
+        for (Fraction temp : fractions) {
+            accum *= temp.denominator;
         }
-        int qwe=0;
-        for (Fraction temp:fractions ) {
-         int a=accum/temp.denominator;
-         qwe+=a*temp.numerator;
+        int qwe = 0;
+        for (Fraction temp : fractions) {
+            int a = accum / temp.denominator;
+            qwe += a * temp.numerator;
         }
         try {
-            result=new Fraction(qwe,accum);
+            result = new Fraction(qwe, accum);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return result;
     }
-  static   Fraction subtract(Fraction frac1,Fraction frac2){
-        Fraction result=null;
-        int commonDenom=frac1.denominator*frac2.denominator;
-        int resultNomerator=frac1.numerator* frac2.denominator- frac2.numerator*frac1.denominator;
+
+    static Fraction subtract(Fraction frac1, Fraction frac2) {
+        Fraction result = null;
+        int commonDenom = frac1.denominator * frac2.denominator;
+        int resultNomerator = frac1.numerator * frac2.denominator - frac2.numerator * frac1.denominator;
         try {
-            result=new Fraction(resultNomerator,commonDenom);
+            result = new Fraction(resultNomerator, commonDenom);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -92,27 +102,32 @@ public class Fraction {
         System.out.println(result);
         return result;
     }
-   static Fraction multiply(Fraction ... fractions){
-        Fraction result=null;
- int resultNumerator=1;
- int resultDenominator=1;
-        for (Fraction temp:fractions ) {
-            resultNumerator*=temp.numerator;
-            resultDenominator*=temp.denominator;
+
+    static Fraction multiply(Fraction... fractions) {
+        Fraction result = null;
+        int resultNumerator = 1;
+        int resultDenominator = 1;
+        for (Fraction temp : fractions) {
+            resultNumerator *= temp.numerator;
+            resultDenominator *= temp.denominator;
         }
         try {
-            result=new Fraction(resultNumerator,resultDenominator);
+            result = new Fraction(resultNumerator, resultDenominator);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
     }
 
-   static  Fraction divide(Fraction frac1,Fraction frac2){
-
-        return multiply(frac1,revert(frac2));
-    }
-
+    static Fraction divide(Fraction frac1, Fraction frac2) throws Exception {
+        Fraction result = null;
+        if (frac2.equals(new Fraction(0, 3))){
+throw new Exception();
+    }else{
+            result=multiply(frac1, revert(frac2));
+        }
+return  result;
+}
     private static Fraction revert(Fraction frac2) {
         Fraction result=null;
         try {
@@ -130,11 +145,12 @@ public class Fraction {
         if (o == null || getClass() != o.getClass()) return false;
         Fraction fraction = (Fraction) o;
 
-        return numerator == fraction.numerator && denominator == fraction.denominator;
+        return (numerator==0 && fraction.numerator==0)||(numerator == fraction.numerator &&  denominator ==Math.abs(fraction.denominator));
     }
 
 
      void simplifying(){
+        boolean isNegative=numerator*denominator<0?true:false;
         int num=Math.abs(this.numerator);
 
         int[] counter={2};
@@ -148,6 +164,8 @@ public class Fraction {
                 } });
             num=Math.abs(this.numerator);
         }
+        this.numerator=isNegative?Math.abs(this.numerator)*(-1):Math.abs(this.numerator);
+        this.denominator=Math.abs(this.denominator);
               }
     @Override
     public int hashCode() {
