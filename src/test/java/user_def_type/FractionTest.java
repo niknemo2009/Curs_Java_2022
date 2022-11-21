@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FractionTest {
 
     @Test
-    void getNumerator() throws Exception {
+    void checkGetNumerator() throws Exception {
         Fraction frac1=new Fraction(4,36);
         assertEquals(frac1.getNumerator(),1);
         Fraction frac2=new Fraction(-4,36);
@@ -25,23 +25,23 @@ class FractionTest {
     }
 
     @Test
-    void setNumerator() throws Exception {
+    void checkSetNumerator() throws Exception {
         Fraction frac1=new Fraction(5,36);
         frac1.setNumerator(2);
          assertEquals(frac1,new Fraction(1,18));
         Fraction frac2=new Fraction(-7,36);
         frac2.setNumerator(9);
-        assertEquals(frac2,new Fraction(-1,4));
+        assertEquals(frac2,new Fraction(1,4));
         Fraction frac3=new Fraction(4,-36);
         frac3.setNumerator(18);
-        assertEquals(frac3,new Fraction(-2,1));
+        assertEquals(frac3,new Fraction(2,1));
         Fraction frac4=new Fraction(-4,-36);
-        frac4.setDenominator(18);
+        frac4.setNumerator(18);
         assertEquals(frac4,new Fraction(10,5));
     }
 
     @Test
-    void getDenominator() throws Exception {
+    void checkGetDenominator() throws Exception {
         Fraction frac1=new Fraction(4,36);
         assertEquals(frac1.getDenominator(),9);
         Fraction frac2=new Fraction(-4,36);

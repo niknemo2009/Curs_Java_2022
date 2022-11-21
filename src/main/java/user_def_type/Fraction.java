@@ -47,7 +47,8 @@ public class Fraction {
     }
 
     public void setNumerator(int numerator) {
-        this.numerator = numerator;
+
+        this.numerator =numerator;
         simplifying();
     }
 
