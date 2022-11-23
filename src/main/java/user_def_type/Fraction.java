@@ -25,7 +25,7 @@ public class Fraction {
         //   IntStream.range(2000,100).forEach(System.out::println);
         Fraction frac1 = null;
         try {
-            frac1 = new Fraction(-2, -4);
+            frac1 = new Fraction(-1, 3);
             //          System.out.println(revert(frac1));
 //            Fraction frac2 = new Fraction(6, 72);
 //            Fraction    frac3 = new Fraction(6,72);
