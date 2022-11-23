@@ -3,6 +3,7 @@ package user_def_type;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.Month;
+
 /*
 1. Create a Date[] and set its fields by values queried from the user.
 2. Write the UDT Date with following additions:
@@ -29,28 +30,26 @@ public class MyDate {
 
     /**
      * This is second constructor.
-     * @param day valid value 1-31
+     *
+     * @param day   valid value 1-31
      * @param month
-     * @param year
-     *<p>
-     *  If parameters of constructors is not valid the  was created date will be equal toDay.
-     *</p>
+     * @param year  <p>
+     *              If parameters of constructors is not valid the  was created date will be equal toDay.
+     *              </p>
      */
     MyDate(int day, Month month, int year) {
         try {
             date = LocalDate.of(year, month, day);
-        } catch (DateTimeException e ) {
+        } catch (DateTimeException e) {
             System.out.println("Problem with constructor parameters !!!");
             date = LocalDate.now();
-        }
-        catch (NullPointerException e ) {
+        } catch (NullPointerException e) {
             System.out.println("Problem with constructor parameters !!!");
             date = LocalDate.now();
         }
     }
 
     /**
-     *
      * @return number day of month
      */
     int getDayofMonth() {
@@ -59,7 +58,6 @@ public class MyDate {
     }
 
     /**
-     *
      * @return instance enum java.util.time.Month
      * @see <a href="https://docs.oracle.com/javase/8/docs/api/java/time/Month.html">java.util.time.Month</a>
      */
@@ -68,7 +66,6 @@ public class MyDate {
     }
 
     /**
-     *
      * @return value number of Year
      */
     int getYear() {
@@ -76,26 +73,24 @@ public class MyDate {
     }
 
     /**
-     *
      * @param month
      */
-    void setMonth( Month month) {
-        if(month!=null){
-            try{
+    void setMonth(Month month) {
+        if (month != null) {
+            try {
                 date = LocalDate.of(getYear(), month, getDayofMonth());
                 System.out.println("Month changed !");
-            }catch(DateTimeException e){
-                System.out.println("Problem with dayOfMonth in "+month);
+            } catch (DateTimeException e) {
+                System.out.println("Problem with dayOfMonth in " + month);
             }
 
-        }else{
+        } else {
             System.out.println(PROBLEM_WITH_METHOD_PARAMETER);
         }
 
     }
 
     /**
-     *
      * @param year
      */
     void setYear(int year) {
@@ -109,7 +104,6 @@ public class MyDate {
     }
 
     /**
-     *
      * @param day
      */
     void setDay(int day) {
