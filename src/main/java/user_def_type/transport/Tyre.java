@@ -12,8 +12,9 @@ public class Tyre {
         return currentPressure;
     }
 
-    public void setCurrentPressure(int currentPressure) {
+    public boolean setCurrentPressure(int currentPressure) {
         this.currentPressure = currentPressure<MAX_PRESSURE&& currentPressure>0?currentPressure:this.currentPressure;
+        return this.currentPressure==currentPressure;
     }
 
     @Override
