@@ -1,5 +1,7 @@
 package user_def_type.transport;
 
+import java.time.LocalDateTime;
+
 public class Bus extends Car{
 private int length;
 private int wide;
@@ -10,5 +12,15 @@ private int height;
         this.length = length;
         this.wide = wide;
         this.height = height;
+    }
+
+    @Override
+    LocalDateTime move(GeoPoint start, GeoPoint end, LocalDateTime startTime) {
+        checkTickets();
+        return super.move(start, end, startTime);
+    }
+
+    private boolean checkTickets() {
+        return  true;
     }
 }
